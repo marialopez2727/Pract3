@@ -279,6 +279,18 @@ FR-017 se conserva para no perder el identificador histórico, pero su estado es
 | ID | Categoría y atributo | Requisito no funcional | Ámbito (Global/Local) | UR/FR relacionados | Método de comprobación | Estado |
 | --- | --- | --- | --- | --- | --- | --- |
 | NFR-07 |NFR-Q (Eficiencia; Escalabilidad; Mantenibilidad) |La plataforma mantendrá los objetivos de capacidad y rendimiento definidos para la primera versión sin intervención manual del personal de la organización.| G | -  | Prueba de carga automatizada con 100 usuarios concurrentes y 10 operaciones/s durante 30 min; comprobar mediante registros de monitorización, ausencia de intervención manual. | - |
+| NFR-08 |NFR-Q (Integridad) |La plataforma realizará al menos una copia de seguridad diaria de la información de salud y de las recetas.| G | - | - | - |
+| NFR-09 |NFR-Q (Integridad) |La plataforma garantizará que las copias de seguridad sirvan cuando se necesitan mediante una prueba de restauración al menos una vez cada tres meses. | G | - | - | - |
+| NFR-10 |NFR-R (Tecnología y entorno) |La plataforma se desplegará en una infraestructura en la nube gestionada por un proveedor externo.| G | - | - | - |
+| NFR-11 |NFR-Q (Portabilidad; Compatibilidad) | La plataforma web deberá ser plenamente funcional e interoperable en las dos últimas versiones principales de los navegadores de uso habitual: Google Chrome, Apple Safari, Brave, DuckDuckGo, Opera y Microsoft Edge. | G | - | Pruebas de compatibilidad entre navegadores (Cross-Browser Testing) manuales y automatizadas (ej. Selenium/Playwright) verificando la correcta renderización visual y ejecución de scripts. | - |
+| NFR-12 |NFR-Q (Disponibilidad) | La plataforma mantendrá una disponibilidad mínima del 99,5 % mensual en horario 24/7, garantizando un tiempo de inactividad no planificado máximo de ~3,6 horas al mes. | G | - | Verificación automatizada mediante sonda
+| NFR-13 |NFR-Q (Rendimiento; Eficiencia) | La plataforma responderá en un máximo de 2 segundos para el 95 % de las operaciones de lectura y en un máximo de 3 segundos para el 95 % de las de escritura, bajo una carga simultánea de 100 usuarios y 10 operaciones por segundo. | G | - | Prueba de carga automatizada simulando 100 usuarios concurrentes y un mínimo de 10 ops/s durante 30 min, midiendo los tiempos de respuesta del 95 % de las peticiones. | - |
+| NFR-14 |NFR-Q (Seguridad) | La plataforma realizará la autenticación con cuentas de Google utilizando el protocolo OAuth 2.0 u OpenID Connect sobre HTTPS, sin almacenar la contraseña del usuario. | G | - | Prueba de autenticación con una cuenta de prueba y revisión de la configuración de la integración. | - |
+| NFR-15 |NFR-R (Restricción técnica; Estándares) | La plataforma ofrecerá una interfaz web responsiva basada en estándares web abiertos (HTML5, CSS y ECMAScript), sin requerir plugins propietarios ni software adicional en el dispositivo. | G | - | Revisión de la arquitectura, dependencias del cliente y pruebas de acceso desde navegadores compatibles. | - |
+
+
+
+
 
 Categorías y atributos: 
 1) Requisitos de calidad (NFR-Q): Rendimiento, Usabilidad, Seguridad, Fiabilidad, Disponibilidad, Modificabilidad, Portabilidad, Eficiencia, Escalabilidad, Verificabilidad / Testabilidad, Robustez, Seguridad funcional (safety), Integridad, Reusabilidad, Instalabilidad.
