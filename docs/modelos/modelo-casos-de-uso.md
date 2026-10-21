@@ -223,48 +223,108 @@ Los apartados 6.1 y 6.2 corresponden a las descripciones detalladas de UC-05 y U
 
 ### 6.1 Descripción detallada UC-05 — Actualizar perfil
 
-**Identificador y nombre del caso de uso:** [Indica el caso.]
+**Identificador y nombre del caso de uso:** UC-05 · Actualizar perfil.
 
-**Objetivo:** [Explica qué resultado pretende obtener el participante.]
+**Objetivo:** Actualizar el perfil propio y conservar los cambios.
 
-**Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
+**Participantes:** Actor principal: Usuario registrado, actores de apoyo: ninguno.
 
-**Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
+**Precondiciones:** La persona ya tiene una cuenta activa y una sesión iniciada.
 
-**Inicio:** [Indica qué acción o suceso inicia el caso.]
+**Inicio:** Usuario solicita edición del perfil.
 
-**Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
+**Escenario principal de éxito:** 1. El usuario accede a la sección de configuración y solicita la edición de su perfil.  
+2. El sistema recupera y muestra el formulario con los datos personales, de contacto y preferencias actuales.  
+3. El usuario introduce las modificaciones deseadas en los campos permitidos.  
+4. El usuario pulsa la opción de guardar y el sistema valida que la información cumpla con las reglas establecidas.  
+5. El sistema almacena los cambios de forma persistente y muestra un mensaje de confirmación de éxito al usuario.  
+6. El caso de uso finaliza.
 
-**Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
 
-**Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
+**Extensiones (flujos alternativos):** 3a. Formato incorrecto o campos obligatorios vacíos:
 
-**Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
+3a.1. El sistema detecta errores en los datos introducidos (ej. formato de teléfono inválido).
 
-**Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
+3a.2. El sistema muestra mensajes de error específicos junto a los campos afectados.
 
+3a.3. El flujo regresa al paso 3 para que el usuario corrija los datos.
+
+4a. Cancelación de la edición:
+
+4a.1. En cualquier momento antes de guardar, el usuario pulsa el botón de cancelar.
+
+4a.2. El sistema descarta los cambios introducidos y el caso de uso finaliza sin modificar el perfil.
+
+**Postcondiciones:** Si el caso termina con éxito: Los nuevos datos personales y preferencias quedan almacenados de forma permanente y se muestran actualizados en la interfaz del usuario.  
+  
+Si el caso se cancela o falla: Los datos del perfil permanecen exactamente igual que antes de iniciar la operación; no se guarda ningún cambio parcial.
+
+**Reglas y NFR pertinentes:** UR-03; FR-019: Regulan la edición de datos personales y preferencias del usuario.
+
+NFR-010: Requisitos no funcionales de usabilidad y consistencia de datos.
+
+Restricción del perfil: El alias único y la dirección de correo electrónico no se pueden modificar desde esta interfaz.
+
+**Preguntas abiertas:** No hay preguntas abiertas.
+
+
+    
 ### 6.2 Descripción detallada UC-21 — Buscar recetas
 
-**Identificador y nombre del caso de uso:** [Indica el caso.]
+**Identificador y nombre del caso de uso:** UC-21 Buscar recetas
 
-**Objetivo:** [Explica qué resultado pretende obtener el participante.]
+**Objetivo:** La persona quiere localizar una receta que cumpla sus criterios y consultar su detalle.
 
-**Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
+**Participantes:**
+* **Principal:** Usuario registrado.
+* **Apoyo:** Ninguno.
 
-**Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
+**Precondiciones:**
+1. El usuario registrado cuenta con una sesión activa e iniciada en la plataforma.
 
-**Inicio:** [Indica qué acción o suceso inicia el caso.]
+**Inicio:** 
+* *Acta UC-21 (Sección 1 y 2):* El usuario solicita acceder al formulario o sección de búsqueda de recetas.
 
-**Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
+**Escenario principal de éxito:**
+1. *Acta UC-21 (Sección 2 - Criterios de búsqueda):* El usuario introduce o selecciona al menos uno de los criterios disponibles: texto libre (palabra o frase), ingredientes a incluir y/o ingredientes a excluir.
+2. *Acta UC-21 (Sección 2 - Criterios de búsqueda):* El usuario solicita ejecutar la búsqueda.
+3. *Acta UC-21 (Sección 2 - Criterios de búsqueda y Resultados y detalle):* El sistema valida que los criterios sean coherentes y busca entre las recetas publicadas y validadas aquellas que cumplan simultáneamente todas las condiciones indicadas (el texto se comprueba en título o descripción breve sin distinguir mayúsculas ni tildes; las recetas deben contener todos los ingredientes incluidos y ninguno de los excluidos).
+4. *Acta UC-21 (Sección 2 - Resultados y detalle):* El sistema muestra los resultados ordenados por fecha de publicación (las más recientes primero). Cada vista previa incluye: título, imagen (o la indicación "Sin imagen"), calificación promedio (o "Sin valoraciones" si no tiene) y descripción breve.
+5. *Acta UC-21 (Sección 2 - Resultados y detalle):* El usuario selecciona una receta del listado para consultar su detalle.
+6. *Acta UC-21 (Sección 2 - Resultados y detalle):* El sistema presenta la vista detallada de la receta seleccionada con: título, imagen (si dispone), ingredientes, instrucciones de preparación, tiempo de cocción, número de porciones, alias de la persona autora e insignia distintiva de validación.
+7. *Acta UC-21 (Sección 2 - Resultados y detalle):* El usuario solicita volver a la lista de resultados. El sistema reabre la lista conservando los criterios y el orden de la última búsqueda realizada.
 
-**Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
+**Extensiones (flujos alternativos):**
 
-**Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
+* **1a. El usuario no indica ningún criterio de búsqueda:**
+  1. *Acta UC-21 (Sección 2 - Criterios de búsqueda):* El sistema solicita al usuario que introduzca o seleccione al menos un criterio y no ejecuta la búsqueda hasta recibirlo.
 
-**Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
+* **1b. Existe un conflicto entre ingredientes incluidos y excluidos:**
+  1. *Acta UC-21 (Sección 2 - Criterios de búsqueda):* El sistema detecta que se ha seleccionado el mismo ingrediente para incluirlo y excluirlo simultáneamente.
+  2. *Acta UC-21 (Sección 2 - Criterios de búsqueda):* El sistema señala explícitamente el conflicto y no ejecuta la consulta hasta que el usuario corrija la selección.
 
-**Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
+* **3a. La búsqueda no devuelve ningún resultado:**
+  1. *Acta UC-21 (Sección 2 - Búsqueda sin resultados):* El sistema indica al usuario que no existen recetas que cumplan todos los criterios especificados y mantiene los criterios en pantalla para su modificación.
+  2. *Acta UC-21 (Sección 2 - Búsqueda sin resultados):* Si procede, el sistema propone de forma separada sugerencias o correcciones ortográficas (respetando siempre las exclusiones de ingredientes indicadas).
+  3. *Acta UC-21 (Sección 2 - Búsqueda sin resultados):* El usuario puede aceptar una alternativa sugerida, modificar los criterios manualmente o dar por finalizada la consulta.
 
+* **3b. / 6a. Ocurre un fallo técnico en la consulta o al cargar el detalle:**
+  1. *Acta UC-21 (Sección 2 - Fallo de la consulta):* El sistema detecta una imposibilidad técnica para realizar la búsqueda o recuperar los detalles de la receta.
+  2. *Acta UC-21 (Sección 2 - Fallo de la consulta):* El sistema muestra un mensaje notificando la incidencia técnica (sin presentarlo como un resultado vacío).
+  3. *Acta UC-21 (Sección 2 - Fallo de la consulta):* El sistema conserva los últimos criterios utilizados para permitir un reintento por parte del usuario o finalizar la operación.
+
+**Postcondiciones:**
+* **Éxito:** El usuario consulta la lista de resultados y el detalle de la receta seleccionada sin alterar los datos del sistema.
+* **Búsqueda sin resultados, cancelación o fallo:** El sistema conserva los criterios ingresados sin modificar la base de datos ni ejecutar búsquedas automáticas no solicitadas.
+
+**Reglas y NFR pertinentes:**
+* *Catálogo de requisitos (UR-08, FR-085, FR-086, FR-087, FR-089, FR-099, FR-102, FR-119):* Permite la búsqueda combinada por palabras clave, selección de ingredientes, exclusión de ingredientes alérgenos/no deseados, visualización en vista previa, ordenación por fecha de publicación más reciente, ayuda en búsquedas vacías y requerimiento de sesión iniciada para búsquedas avanzadas.
+* *Catálogo de requisitos (FR-056, FR-066, FR-192):* Estructura de campos obligatorios de la receta, obligatoriedad de la insignia distintiva para recetas validadas por nutricionista y uso exclusivo del alias público como identidad del autor.
+* *Acta UC-21 (Sección 1 y 2):* Exclusión explícita de recetas pendientes de validación en los resultados de búsqueda. Aclaración de que esta descripción no aplica automáticamente filtros de alergias del perfil del usuario.
+* *Modelo de casos de uso (Sección 5) y Catálogo de requisitos (NFR-004, NFR-005, NFR-010):* Tiempos de respuesta para consultas bajo carga y accesibilidad (WCAG 2.2, nivel AA).
+
+**Preguntas abiertas:**
+* *Modelo de casos de uso (Sección 6):* No hay preguntas abiertas para el alcance descrito en esta versión.
 ## 7 Continuidad entre iteraciones
 
 E1 estableció la primera vista del modelo. Su estado revisado se conserva en el commit público `984a17f`, con los casos UC-01 a UC-07, UC-09 a UC-11 y UC-31 a UC-35.
